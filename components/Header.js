@@ -27,6 +27,9 @@ function Header() {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   };
+  const handleReset = () => {
+    setSearchInput("");
+  };
 
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
@@ -80,6 +83,12 @@ function Header() {
               min={1}
               className="w-12 pl-2 text-lg outline-none text-red-400"
             />
+          </div>
+          <div className="flex">
+            <button className="flex-grow text-gray-400" onClick={handleReset}>
+              Cancel
+            </button>
+            <button className="flex-grow text-red-400">Search</button>
           </div>
         </div>
       )}
