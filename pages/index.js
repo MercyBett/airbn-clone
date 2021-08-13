@@ -5,8 +5,7 @@ import Header from '../components/Header'
 import LargeCard from '../components/LargeCard';
 import MediumCard from '../components/MediumCard';
 import SmallCard from '../components/SmallCard';
-// import 'react-date-range/dist/styles.css';
-// import 'react-date-range/dist/theme/default.css';
+
 
 export default function Home({exploreData, cardsData}) {
   return (
