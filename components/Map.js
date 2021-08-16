@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ReactMapGl from "react-map-gl";
+import ReactMapGl, { Marker, Popup } from "react-map-gl";
 import getCenter from "geolib/es/getCenter";
 
 function Map({ searchResults }) {
@@ -10,6 +10,7 @@ function Map({ searchResults }) {
   }));
 
   const center = getCenter(cordinates);
+  const [selectedLocation, setSelectedLocation] = useState({});
 
   const [viewport, setViewport] = useState({
     width: "100%",
@@ -18,6 +19,8 @@ function Map({ searchResults }) {
     longitude: center.longitude,
     zoom: 11,
   });
+  console.log(center);
+  console.log(selectedLocation);
 
   return (
     <ReactMapGl
@@ -25,7 +28,39 @@ function Map({ searchResults }) {
       mapboxApiAccessToken={process.env.mapbox_key}
       {...viewport}
       onViewportChange={(viewport) => setViewport(viewport)}
-    ></ReactMapGl>
+    >
+      {searchResults?.map((result) => (
+        <div key={result.long}>
+          <Marker
+            longitude={result.long}
+            latitude={result.lat}
+            offsetLeft={-20}
+            offsetTop={-10}
+          >
+            <p
+              onClick={() => setSelectedLocation(result)}
+              aria-label="push-pin"
+              className="text-2xl cursor-pointer animate-bounce"
+            >
+              📌
+            </p>
+          </Marker>
+          {/* popup showing we clicked a marker */}
+          {selectedLocation.long === result.long ? (
+            <Popup
+              onClose={() => setSelectedLocation({})}
+              closeOnClick={true}
+              latitude={result.lat}
+              longitude={result.long}
+            >
+              {result.title}
+            </Popup>
+          ) : (
+            false
+          )}
+        </div>
+      ))}
+    </ReactMapGl>
   );
 }
 
