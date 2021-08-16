@@ -47,7 +47,7 @@ function Search({ searchResults }) {
           </div>
         </section>
         <section className="min-w-[600px]">
-          <Map />
+          <Map searchResults={searchResults} />
         </section>
       </main>
       <Footer />
