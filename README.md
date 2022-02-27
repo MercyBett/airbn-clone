@@ -1,9 +1,9 @@
-# Airbnb CLone
+# Airbnb Clone
 This is a replica of the airbnb clone(frontend only) using nextjs and tailwind css.
 
 ## Preview
 
-Preview the example live on [airbnb](http://stackblitz.com/):
+Preview the example live on [airbnb](https://airbn-clone.vercel.app/):
 
 
 
